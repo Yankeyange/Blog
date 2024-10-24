@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+<link rel="stylesheet" href="topics.css">
+{% block content %}
+
+<h1>VOUS POUVEZ DONNER DES SUJETS ICI HEIN</h1>
+
+<ul>
+  {% for topic in topics %}
+  <li>{{ topic }}</li>
+  {% empty %}
+  <p>il n'y a pas de sujet pour l'instant</p>
+
+  {% endfor %}
+</ul>
+
+
+{% endblock content %}

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<p>Ici sera les différents sujet de {{ topic }}</p>
+<p>Sujet : {{ topic }}</p>
+
+<ul>
+{% for entry in entries %}
+
+ <li>
+  <p>{{ entry.created_date }}</p>
+  <p>{{ entry.text }}</p>
+ </li>
+{% empty %}
+<p>Bon chers amies pour l'instant il n'y a rien </p>
+  {% endfor %}
+</ul>
+
+{% endblock content %}

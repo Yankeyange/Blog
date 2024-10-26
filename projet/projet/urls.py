@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from blog.views import home, topics, topic
+from blog.views import home, topics, topic, new_topic, new_entry, edit_entry, loginpage, logoutpage
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,6 +24,16 @@ urlpatterns = [
     path('', home, name="home"),
     # les éléments de ma page
     path('topics/', topics, name="topics"),
-    # detail de la page pour un simple topic
+    # detail pour chaque sujet 
     path('topics/<int:topic_id>/', topic, name="topic"),
+    # ajouter un nouveau sujet
+    path('new_topic/', new_topic, name="new_topic"),
+    # ajouter un nouveau élément pour chaque sujet
+    path('new_entry/<int:topic_id>/', new_entry, name="new_entry"),
+    # une page pour editer une entrée(entry)
+    path('edit_entry/<int:entry_id>/', edit_entry, name="edit_entry"),
+    # login page
+    path('loginpage/', loginpage, name="loginpage"),
+    #logout page 
+    path("logoutpage/", logoutpage, name="logoutpage"),
 ]

@@ -5,14 +5,30 @@
 
 <form action="{% url 'loginpage' %}" method="post">
   {% csrf_token %}
-  <label for="username">Entrez un pseudonyme : </label>
-  <input type="text" id="username" placeholder="Entrer un pseudo" name="username" required>
+  <div>
+  <label for="username" class="form-container">Entrez un pseudonyme : </label>
+  <input type="text" id="username" placeholder="Entrer un pseudo" name="username" class="form-container" required>
 
-  <label for="password">Entrez votre mot de passe de connexion :</label>
-  <input type="password" id="password"  placeholder="password" name="pass" required>
+  <label for="password" class="form-container">Entrez votre mot de passe de connexion :</label>
+  <input type="password" id="password"  placeholder="password" name="pass" class="form-container" required>
 
-<button name="submit">Envoyer</button>
+<button name="submit" class="form-container">Envoyer</button>
 </div>
 </form>
 
-{% enblock content %}
+<style>
+  div {
+
+	width: 150px;
+	float: left;
+  }
+   h2{
+    text-align: center;
+  }
+  
+        .form-container button:hover {
+            background-color: #45a049;
+        }
+</style>
+
+{% endblock content %}

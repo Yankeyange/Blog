@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from blog.models import Topic, Entry
 from blog.forms import TopicForm, EntryForm
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
+from django.contrib import messages
 
 
 # notre home page
@@ -91,11 +93,27 @@ def loginpage(request):
    if request.method =="POST":
         name=request.POST.get("username")
         pass1=request.POST.get("pass")
+        # je voulais voir si les données était présente
         print(name, pass1)
+        user = authenticate(request,username=name,password=pass1)
+        if user is not None:
+            login(request, user)
+            messages.success(request, 'Connexion réussi !')
+            return redirect('home')
+        else:
+            messages.error(request, "Nom d utilisateur ou mot de passe incorrect. ")
+            return redirect("loginpage")
+        
+
+   return render(request, 'loginpage.html')
+    
 
 # logout page 
 def logoutpage(request):
-  pass
+   # déconnecte l'utilisateur
+    logout(request)
+    # le redirige vers la page de connexion
+    return redirect('loginpage')
 
 # registration page
 

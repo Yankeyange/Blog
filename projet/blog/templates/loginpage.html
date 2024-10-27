@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Login page</h1>
+
+<form action="{% url 'loginpage' %}" method="post">
+  {% csrf_token %}
+  <label for="username">Entrez un pseudonyme : </label>
+  <input type="text" id="username" placeholder="Entrer un pseudo" name="username" required>
+
+  <label for="password">Entrez votre mot de passe de connexion :</label>
+  <input type="password" id="password"  placeholder="password" name="pass" required>
+
+<button name="submit">Envoyer</button>
+</div>
+</form>
+
+{% enblock content %}

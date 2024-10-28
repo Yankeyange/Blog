@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Signup Page</h2>
+
+<form  method="post">
+  
+<div class="form-container">
+  {% csrf_token %}
+    <label for="username">Entrez un pseudonyme : </label>
+    <input type="username" id="username" name="username" placeholder="Pseudo" required>
+
+    <label for="email">Entrez un mail :</label>
+    <input type="email" id="email"  placeholder="email" 
+   name="email" required>
+
+    <label for="password1">Entrez un mot de passe :</label>
+    <input type="password" id="password1"  placeholder="password1" name="password1" required>
+
+    <label for="password2">Entrez un mot de passe :</label>
+    <input type="password" id="password2"  placeholder="password2"
+    name="password2"  required>
+
+    
+  
+<button name="submit" class="button">Envoyer</button>
+</div>
+</form>
+
+
+<style>
+  div {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin-left: 700px;
+  }
+  h2{
+    text-align: center;
+  }
+  
+  .form-container {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .form-container label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        .form-container input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .form-container button:hover {
+            background-color: #45a049;
+        }
+  
+</style>
+{% endblock content %}

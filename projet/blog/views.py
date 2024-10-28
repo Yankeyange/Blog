@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from blog.models import Topic, Entry
 from blog.forms import TopicForm, EntryForm
 from django.contrib.auth import authenticate, login, logout
@@ -118,4 +118,22 @@ def logoutpage(request):
 # registration page
 
 def registration(request):
-  pass
+
+  if request.method =="POST":
+        
+        name=request.POST.get("username")
+        pass1=request.POST.get("password1")
+        pass2 =request.POST.get("password2")
+        email=request.POST.get("email")
+        print(name, pass1,email)
+      
+        if pass1 != pass2:
+            return HttpResponse("Ton mot de passe est incorrect réessaie stp !")
+        else:
+            
+          my_user = User.objects.create_user( name ,pass1, email)
+          my_user.save()
+          return redirect("loginpage")
+          
+        # return redirect('loginpage')
+  return render(request, "registration.html" )

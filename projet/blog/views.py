@@ -4,19 +4,24 @@ from blog.forms import TopicForm, EntryForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
 
 
 # notre home page
+login_required
 def home(request):
   return render(request, 'home.html')
 
 # les éléments de ma page
+login_required
 def topics(request):
   topics = Topic.objects.all()
   context = {'topics':topics}
   return render(request, 'topics.html', context)
 
 # pour afficher les éléments d'un élément
+login_required
 def topic(request, topic_id):
   topic = Topic.objects.get(id=topic_id)
   # je met ce élément parce que dans mon modèles j'ai signifie 
@@ -26,7 +31,7 @@ def topic(request, topic_id):
   return render(request, 'topic.html', context)
 
 # page pour ajouter un nouveau sujet
-
+login_required
 def new_topic(request):
 
   if request.method != 'POST':
@@ -45,7 +50,7 @@ def new_topic(request):
   return render(request, 'new_topic.html', context)
 
 # ajouter des éléments à un seu sujet
-
+login_required
 def new_entry(request, topic_id):
   topic = Topic.objects.get(id=topic_id)
 
@@ -64,7 +69,7 @@ def new_entry(request, topic_id):
 
 
 # ou l'utilisateur pourra modifier ces entrées
-
+login_required
 def edit_entry(request, entry_id):
   """ on pourra modifier une entré existante"""
   entry = Entry.objects.get(id=entry_id)
@@ -89,26 +94,28 @@ def edit_entry(request, entry_id):
   return render(request, 'edit_entry.html', context)
 
 # login page 
+login_required
 def loginpage(request):
    if request.method =="POST":
         name=request.POST.get("username")
         pass1=request.POST.get("pass")
-        # je voulais voir si les données était présente
+        # je voulais voir si les données étaient présentent
         print(name, pass1)
         user = authenticate(request,username=name,password=pass1)
         if user is not None:
             login(request, user)
             messages.success(request, 'Connexion réussi !')
-            return redirect('home')
+            return redirect('')
         else:
             messages.error(request, "Nom d utilisateur ou mot de passe incorrect. ")
-            return redirect("loginpage")
+            return redirect("topics")
         
 
    return render(request, 'loginpage.html')
     
 
 # logout page 
+login_required
 def logoutpage(request):
    # déconnecte l'utilisateur
     logout(request)
@@ -116,24 +123,19 @@ def logoutpage(request):
     return redirect('loginpage')
 
 # registration page
+"""
+def register(request):
+   if request.method !='POST':
+      form = UserCreationForm()
+   else:
+      form = UserCreationForm(data=request.POST)
 
-def registration(request):
-
-  if request.method =="POST":
-        
-        name=request.POST.get("username")
-        pass1=request.POST.get("password1")
-        pass2 =request.POST.get("password2")
-        email=request.POST.get("email")
-        print(name, pass1,email)
+      if form.is_valid():
+         new_user = form.save()
+         login(request, new_user)
+         return redirect("home")
       
-        if pass1 != pass2:
-            return HttpResponse("Ton mot de passe est incorrect réessaie stp !")
-        else:
-            
-          my_user = User.objects.create_user( name ,pass1, email)
-          my_user.save()
-          return redirect("loginpage")
-          
-        # return redirect('loginpage')
-  return render(request, "registration.html" )
+   context = {'form': form}
+   return render(request, "register.html", context)
+   
+"""

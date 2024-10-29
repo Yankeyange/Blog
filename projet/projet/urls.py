@@ -16,12 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from blog.views import home, topics, topic, new_topic, new_entry, edit_entry, loginpage, logoutpage, registration
+from blog.views import home, topics, topic, new_topic, new_entry, edit_entry, loginpage, logoutpage
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     # la page d'acceuil
-    path('', home, name="home"),
+    path('home/', home, name="home"),
     # les éléments de ma page
     path('topics/', topics, name="topics"),
     # detail pour chaque sujet 
@@ -33,9 +33,9 @@ urlpatterns = [
     # une page pour editer une entrée(entry)
     path('edit_entry/<int:entry_id>/', edit_entry, name="edit_entry"),
     # login page
-    path('loginpage/', loginpage, name="loginpage"),
+    path('', loginpage, name="loginpage"),
     #logout page 
     path("logoutpage/", logoutpage, name="logoutpage"),
     # registration page
-    path("registration/", registration, name="registration"),
+    
 ]

@@ -6,29 +6,59 @@
 <form action="{% url 'loginpage' %}" method="post">
   {% csrf_token %}
   <div>
-  <label for="username" class="form-container">Entrez un pseudonyme : </label>
-  <input type="text" id="username" placeholder="Entrer un pseudo" name="username" class="form-container" required>
+  <label for="username" >Entrez un pseudonyme : </label>
+  <input type="text" id="username" placeholder="Entrer un pseudo" name="username"  required>
 
-  <label for="password" class="form-container">Entrez votre mot de passe de connexion :</label>
-  <input type="password" id="password"  placeholder="password" name="pass" class="form-container" required>
+  <label for="password">Entrez votre mot de passe de connexion :</label>
+  <input type="password" id="password"  placeholder="password" name="pass" required>
 
-<button name="submit" class="form-container">Envoyer</button>
+<button name="submit">Envoyer</button>
 </div>
 </form>
 
 <style>
-  div {
-
-	width: 150px;
-	float: left;
-  }
-   h2{
+  h1 {
     text-align: center;
   }
-  
-        .form-container button:hover {
-            background-color: #45a049;
-        }
-</style>
+  form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
 
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+</style>
 {% endblock content %}
